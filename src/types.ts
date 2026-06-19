@@ -14,6 +14,8 @@ export enum Platform {
 export enum GameEngine {
   Unity = "Unity",
   Unreal = "Unreal",
+  Godot = "Godot",
+  Custom = "Custom (C++)",
 }
 
 export enum MediaType {
@@ -48,5 +50,5 @@ export interface Game {
   links: { source: LinkImageSource; url: string }[];
   media: MediaItem[];
   platforms: Platform[];
-  engine: GameEngine;
+  engine: GameEngine[];
 }

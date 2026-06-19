@@ -1,29 +1,27 @@
 import { AboutMeData, Game, GameEngine, LinkImageSource, MediaType, Platform } from "./types";
 
 export const PersonalInfo: AboutMeData = {
-  name: "YOUR_NAME",
-  role: "YOUR_ROLE",
-  introduction: "SHORT_INTRODUCTION",
-  description: "TELL_ABOUT_YOURSELF",
+  name: "Vivaan Bhandary",
+  role: "Game Developer",
+  introduction: "Hey, I'm Vivaan, I am a Computer Science graduate from UBC.",
+  description: "I have a keen interest in building software systems as well as fun and engaging gameplay experiences.",
   image: `${process.env.PUBLIC_URL}/images/Profile.jpg`,
   cvUri: `${process.env.PUBLIC_URL}/files/YOUR_CV.pdf`,
   links: {
-    github: "https://github.com/NAME",
-    itchIO: "https://NAME.itch.io",
-    linkedIn: "https://www.linkedin.com/in/NAME",
+    github: "https://github.com/vivaanbhandary/vivaanbhandary",
+    linkedIn: "https://www.linkedin.com/in/vivaan-bhandary-389726241/",
   }
 };
 
 export const games: Game[] = [
   {
-    name: "GAME_NAME",
+    name: "Reloaded Dice",
     description: "GAME_DESCRIPTION",
-    genres: ["GAME_GENRE", "GAME_GENRE..."],
-    platforms: [Platform.Windows],
-    engine: GameEngine.Unity,
+    genres: ["Roguelike", "Bullet Heaven"],
+    platforms: [Platform.Windows, Platform.Mac],
+    engine: [GameEngine.Godot, GameEngine.Custom],
     links: [
-      { source: LinkImageSource.Github, url: "https://github.com/YOUR_REPO" },
-      { source: LinkImageSource.ItchIo, url: "https://YOUR_ITCH.itch.io/GAME_NAME" },
+      { source: LinkImageSource.Github, url: "https://github.com/Marecu/reloaded-dice" },
     ],
     media: [
       { source: "/images/games/GAME_NAME/Screenshot_1.png", type: MediaType.Image },
@@ -38,7 +36,7 @@ export const games: Game[] = [
     description: "GAME_DESCRIPTION",
     genres: ["GAME_GENRE", "GAME_GENRE..."],
     platforms: [Platform.Windows],
-    engine: GameEngine.Unity,
+    engine: [GameEngine.Unity],
     links: [
       { source: LinkImageSource.Github, url: "https://github.com/YOUR_REPO" },
       { source: LinkImageSource.ItchIo, url: "https://YOUR_ITCH.itch.io/GAME_NAME" },
