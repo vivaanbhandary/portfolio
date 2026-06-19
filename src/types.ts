@@ -1,6 +1,5 @@
 export enum LinkImageSource {
   Github = "/images/logos/github.png",
-  ItchIo = "/images/logos/itch.io.png",
 }
 
 export enum Platform {
@@ -37,7 +36,6 @@ export interface AboutMeData {
   cvUri: string;
   links: {
     github: string;
-    itchIO: string;
     linkedIn: string;
   };
 }
