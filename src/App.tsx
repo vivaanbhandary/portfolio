@@ -2,7 +2,6 @@ import React from "react";
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { styled } from "styled-components";
 import MainPage from "./Pages/MainPage";
-import ContactPage from "./Pages/ContactPage";
 import SelfSummary from "./Components/SelfSummary";
 import AboutMe from "./Pages/AboutMe";
 import { Column } from "./Styles/StyledComponents";
@@ -10,23 +9,22 @@ import Footer from "./Components/Footer";
 
 const AppContainer = styled(Column)`
   min-height: 90vh;
-  padding: 60px;
+  padding: 20px 60px; 
   gap: 30px;
-
   @media (max-width: 768px) {
     gap: 0;
-    padding: 30px 10px;
+    padding: 20px 10px;
   }
-`;
+  `;
 
 const Navbar = styled.nav`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  gap: 30px;
-
+  gap: 60px; 
   @media (max-width: 768px) {
-    margin-bottom: 0;
+    margin-bottom: 10px;
+    gap: 30px;
   }
 `;
 
@@ -61,14 +59,12 @@ const App: React.FC = () => {
         <SelfSummary />
 
         <Navbar>
-          <NavbarLink to="/">Games 👾</NavbarLink>
-          <NavbarLink to="/about-me">About me 👨🏻‍💻</NavbarLink>
-          <NavbarLink to="/contact">Contact 💬</NavbarLink>
+          <NavbarLink to="/">Games</NavbarLink>
+          <NavbarLink to="/about-me">About me</NavbarLink>
         </Navbar>
 
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/contact" element={<ContactPage />} />
           <Route path="/about-me" element={<AboutMe />} />
         </Routes>
       </AppContainer>

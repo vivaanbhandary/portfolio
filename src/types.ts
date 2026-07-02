@@ -1,5 +1,6 @@
 export enum LinkImageSource {
   Github = "/images/logos/github.png",
+  Itch = "/images/logos/itch.io.png", 
 }
 
 export enum Platform {
@@ -14,7 +15,11 @@ export enum GameEngine {
   Unity = "Unity",
   Unreal = "Unreal",
   Godot = "Godot",
-  Custom = "Custom (C++)",
+  C = "C++",
+  JS = "JavaScript",
+  Twine = "Twine",
+  Python = "Python",
+  Java = "Java",
 }
 
 export enum MediaType {
@@ -42,11 +47,14 @@ export interface AboutMeData {
 
 export interface Game {
   name: string;
+  date: string; // Added for the timeline
   description: string;
-  genres: string[];
+  developerInsights?: string; // Added for deeper technical writeups
+  learningOutcomes?: string[]; // Bulleted lists are highly ATS-friendly
+  genres?: string[];
   source?: { name: string; url: string };
-  links: { source: LinkImageSource; url: string }[];
-  media: MediaItem[];
-  platforms: Platform[];
-  engine: GameEngine[];
+  links?: { source: LinkImageSource; url: string }[];
+  media?: MediaItem[];
+  platforms?: Platform[];
+  engine?: GameEngine[];
 }
