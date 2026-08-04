@@ -5,14 +5,18 @@ import { Game as GameInterface } from "../types";
 import GameInfo from "./GameInfo";
 import LogoButton from "./LogoButton";
 import { Row, Column } from "../Styles/StyledComponents";
+import { Link } from "react-router-dom";
 
 interface GameProps {
   game: GameInterface;
 }
 
-const Half = styled.div<{ $isOpen?: boolean; $isInteractive?: boolean }>`
+const Half = styled.div<{ $isOpen?: boolean; $isInteractive?: boolean; $isWriteup?: boolean }>`
   width: 47%;
-  background: ${({ $isInteractive }) => $isInteractive ? "#1e1e1e" : "transparent"};
+  background: ${({ $isInteractive, $isWriteup }) => 
+    $isInteractive 
+      ? ($isWriteup ? "#0f172a" : "#1e1e1e") // #0f172a is a sleek dark-blue that fits dark mode
+      : "transparent"};
   border-radius: 12px;
   padding: ${({ $isInteractive }) => $isInteractive ? "25px" : "0"};
   border: ${({ $isInteractive }) => $isInteractive ? "1px solid #333" : "none"};
@@ -20,9 +24,8 @@ const Half = styled.div<{ $isOpen?: boolean; $isInteractive?: boolean }>`
   cursor: ${({ $isInteractive }) => $isInteractive ? "pointer" : "default"};
   transition: all 0.3s ease;
   box-shadow: ${({ $isOpen }) => $isOpen ? "0 0 20px rgba(78, 159, 61, 0.2)" : "none"};
-
   height: fit-content;
-
+  
   &:hover {
     border-color: ${({ $isInteractive }) => $isInteractive ? "#4e9f3d" : "transparent"};
     transform: ${({ $isInteractive }) => $isInteractive ? "translateY(-5px)" : "none"};
@@ -34,14 +37,24 @@ const Half = styled.div<{ $isOpen?: boolean; $isInteractive?: boolean }>`
   }
 `;
 
+const EngineTitle = styled.h4`
+  color: #00ced1;
+  font-family: 'ZenDots', sans-serif;
+  margin: 0 0 15px 0;
+  font-size: 1.5rem; /* Made larger */
+  font-weight: bold; /* Added bold */
+  text-align: center; /* Centered */
+  letter-spacing: 1px;
+`;
+
 const MediaHalf = styled(Half)`
   display: flex;
   flex-direction: column;
   gap: 15px;
 `;
 
-const MetaContainer = styled(Column)`
-  background: #1e1e1e;
+const MetaContainer = styled(Column)<{ $isWriteup?: boolean }>`
+  background: ${({ $isWriteup }) => ($isWriteup ? "#0f172a" : "#1e1e1e")};
   padding: 15px;
   border-radius: 8px;
   border: 1px solid #333;
@@ -126,21 +139,52 @@ const ReadMoreInstruction = styled.span`
   display: block;
 `;
 
+const ReadArticleButton = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 25px; /* Reverted to original padding */
+  width: fit-content; /* NEW: Forces the button to only be as wide as its text */
+  background-color: #00ced1;
+  color: #121212;
+  font-weight: bold;
+  font-family: 'Oxanium', sans-serif;
+  text-decoration: none;
+  border-radius: 8px; /* Reverted to original corners */
+  margin-top: 10px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  
+  /* Retaining the text-color fixes from before */
+  &:hover, &:focus, &:active {
+    background-color: #00a8a8;
+    color: #121212; 
+    transform: translateY(-2px);
+  }
+
+  &::selection, & *::selection {
+    background-color: rgba(255, 255, 255, 0.4); 
+    color: #121212; 
+  }
+`;
+
 const Game: React.FC<GameProps> = ({ game }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const isWriteup = game.genres?.includes("Writeup") ?? false;
+
   return (
     <>
-      {/* Text Info Half (Clickable to Expand) */}
-      <Half $isInteractive={true} $isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+      {/* Pass $isWriteup down to the interactive half */}
+      <Half $isInteractive={true} $isOpen={isOpen} $isWriteup={isWriteup} onClick={() => setIsOpen(!isOpen)}>
         <DateBadge>{game.date}</DateBadge>
         <GameInfo game={game} />
         
-        <ReadMoreInstruction>
-          {isOpen ? "Click here to minimize ↑" : "Click to expand details ↓"}
+        {game.developerInsights && (<ReadMoreInstruction>
+          {isOpen ? "Click here to minimize ↑" : "Click to view Dev Insights & Learning Outcomes ↓"}
         </ReadMoreInstruction>
+        )}
 
-        {isOpen && (
+        {game.developerInsights && isOpen && (
           <ExpandedContent onClick={(e) => e.stopPropagation()}>
             {game.developerInsights && (
               <>
@@ -163,24 +207,42 @@ const Game: React.FC<GameProps> = ({ game }) => {
         )}
       </Half>
 
-      {/* Media and Metadata Half (Always Visible) */}
+      {/* Media and Metadata Half */}
       <MediaHalf $isInteractive={false}>
+        
+        {game.engine && game.engine.length > 0 && (
+          <EngineTitle>Made using: {game.engine.join(" / ")}</EngineTitle>
+        )}
+
         {game.media && game.media.length > 0 && (
           <GameMedia media={game.media} />
         )}
         
-        <MetaContainer>
+        {/* Pass $isWriteup to MetaContainer */}
+        <MetaContainer $isWriteup={isWriteup}>
           {game.genres && (
             <MetaLine><strong>Genres:</strong> {game.genres.join(", ")}</MetaLine>
           )}
-          {/* Split platforms and engine into the second line */}
-          {(game.platforms || game.engine) && (
+          
+          {/* Display tools, engine removed from here since it has its own title */}
+          {game.tools && (
             <MetaLine>
-              {game.platforms && <span><strong>Platforms:</strong> {game.platforms.join(", ")} </span>}
-              {game.engine && <span>&nbsp;&nbsp;<strong>Engine:</strong> {game.engine.join(", ")}</span>}
+              <span><strong>Tools:</strong> {game.tools.join(", ")} </span>
+            </MetaLine>
+          )}
+
+          {game.techniques && (
+            <MetaLine>
+              <span><strong>Techniques:</strong> {game.techniques.join(", ")} </span>
             </MetaLine>
           )}
         </MetaContainer>
+
+        {game.articleUrl && (
+          <ReadArticleButton to={game.articleUrl}>
+            Read Full Essay
+          </ReadArticleButton>
+        )}
         
         {game.links && game.links.length > 0 && (
           <LinksContainer>

@@ -15,7 +15,8 @@ export const GameMediaContainer = styled(Column)`
 
 export const LargeMediaWrapper = styled(Row) <{ $isFading: boolean }>`
   width: 100%;
-  height: 320px;
+  aspect-ratio: 16 / 9; 
+  height: auto;
   justify-content: center;
   opacity: ${({ $isFading }) => ($isFading ? 0 : 1)};
   transition: opacity 0.3s ease-in-out;

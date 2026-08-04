@@ -15,7 +15,7 @@ export enum GameEngine {
   Unity = "Unity",
   Unreal = "Unreal",
   Godot = "Godot",
-  C = "C++",
+  C = "Custom Engine (C++)",
   JS = "JavaScript",
   Twine = "Twine",
   Python = "Python",
@@ -55,6 +55,8 @@ export interface Game {
   source?: { name: string; url: string };
   links?: { source: LinkImageSource; url: string }[];
   media?: MediaItem[];
-  platforms?: Platform[];
+  tools?: string[];
+  techniques?: string[];
   engine?: GameEngine[];
+  articleUrl?: string; // Path to internal articles/essays
 }

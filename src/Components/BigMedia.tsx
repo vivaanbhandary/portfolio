@@ -11,19 +11,21 @@ justify-content: center;
 `;
 
 const MediaIframe = styled.iframe`
-  width: 70%;
   height: 100%;
+  aspect-ratio: 16 / 9; /* Forces the perfect video shape */
+  max-width: 100%;      /* Ensures it doesn't overflow smaller screens */
   border: none;
 
   @media (max-width: 768px) {
     width: 100%;
+    height: auto;       /* On mobile, use full width and scale height automatically */
   }
 `;
 
 const MediaImage = styled.img`
   width: 100%;
   height: auto;
-  max-height: 300px;
+  max-height: 450px; 
   object-fit: contain;
   cursor: pointer;
 `;
@@ -60,8 +62,18 @@ const BigMedia: React.FC<MediaItem> = ({ source, type }) => {
     }
   };
 
-  const getYouTubeEmbedUrl = (url: string) => {
-    return`${url}?autoplay=1&mute=1`;
+const getYouTubeEmbedUrl = (url: string) => {
+    // Extract the video ID from standard watch URLs, youtu.be shortlinks, or existing embed URLs
+    const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^&?/]+)/);
+    const videoId = match ? match[1] : "";
+
+    if (videoId) {
+      // Return the required iframe embed format
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+    }
+    
+    // Fallback just in case
+    return url;
   };
 
   return (

@@ -6,6 +6,7 @@ import SelfSummary from "./Components/SelfSummary";
 import AboutMe from "./Pages/AboutMe";
 import { Column } from "./Styles/StyledComponents";
 import Footer from "./Components/Footer";
+import MusicEssay from "./Pages/MusicEssay";
 
 const AppContainer = styled(Column)`
   min-height: 90vh;
@@ -66,6 +67,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/about-me" element={<AboutMe />} />
+          <Route path="/music-essay" element={<MusicEssay />} /> 
         </Routes>
       </AppContainer>
       <Footer />
