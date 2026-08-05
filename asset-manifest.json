@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "./static/css/main.4118024a.css",
-    "main.js": "./static/js/main.5203d827.js",
+    "main.css": "./static/css/main.b5ea98b2.css",
+    "main.js": "./static/js/main.f73558b6.js",
     "static/media/Oxanium.ttf": "./static/media/Oxanium.50bb18b058c797a89438.ttf",
     "static/media/PhoenixGaming.ttf": "./static/media/PhoenixGaming.52b75a56ef9f70c20259.ttf",
     "static/media/ZenDots.ttf": "./static/media/ZenDots.ad9e0d65654bb49213b6.ttf",
     "static/media/PixelGame.otf": "./static/media/PixelGame.a7040ee1df82fd46813b.otf",
     "static/media/Blonden-Regular.otf": "./static/media/Blonden-Regular.2322fdec06992ee912be.otf",
     "index.html": "./index.html",
-    "main.4118024a.css.map": "./static/css/main.4118024a.css.map",
-    "main.5203d827.js.map": "./static/js/main.5203d827.js.map"
+    "main.b5ea98b2.css.map": "./static/css/main.b5ea98b2.css.map",
+    "main.f73558b6.js.map": "./static/js/main.f73558b6.js.map"
   },
   "entrypoints": [
-    "static/css/main.4118024a.css",
-    "static/js/main.5203d827.js"
+    "static/css/main.b5ea98b2.css",
+    "static/js/main.f73558b6.js"
   ]
 }
