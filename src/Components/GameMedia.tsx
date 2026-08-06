@@ -26,6 +26,8 @@ export const ThumbnailContainer = styled(Row)`
   width: 100%;
   gap: 8px;
   justify-content: center;
+  max-width: 100%; 
+  overflow: hidden;
 `;
 
 export const Thumbnails = styled.div`
@@ -36,13 +38,10 @@ export const Thumbnails = styled.div`
   max-width: 50%;
   max-height: 160px;
   padding: 12px;
-
-  @media (max-width: 1100px) {
-    max-width: 10%;
-  }
+  flex: 1; 
+  min-width: 0; /* Crucial: allows flex children to shrink below their content size */
 
   @media (max-width: 768px) {
-    max-width: 100%;
     padding: 4px;
     min-height: 0;
   }

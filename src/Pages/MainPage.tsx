@@ -56,11 +56,13 @@ const TimelineRow = styled.div<{ $isEven: boolean }>`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    min-width: 0; 
+    padding-left: 40px; 
     padding-left: 50px;
     padding-right: 10px;
     margin-bottom: 40px;
     &::after {
-      left: 20px;
+      left: 15px;
       margin-left: -14px;
     }
   }

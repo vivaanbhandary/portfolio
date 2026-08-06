@@ -33,6 +33,7 @@ const Half = styled.div<{ $isOpen?: boolean; $isInteractive?: boolean; $isWriteu
 
   @media (max-width: 768px) {
     width: 100%;
+    min-width: 0; 
     margin-bottom: 20px;
   }
 `;
@@ -45,6 +46,9 @@ const EngineTitle = styled.h4`
   font-weight: bold; /* Added bold */
   text-align: center; /* Centered */
   letter-spacing: 1px;
+
+  word-break: break-word;
+  overflow-wrap: anywhere;
 `;
 
 const MediaHalf = styled(Half)`
@@ -65,9 +69,7 @@ const MetaLine = styled.div`
   color: silver;
   font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
   font-size: 0.9rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.5; 
 `;
 
 const DateBadge = styled.div`
@@ -204,22 +206,11 @@ const Game: React.FC<GameProps> = ({ game }) => {
               </>
             )}
           </ExpandedContent>
-        )}
-      </Half>
-
-      {/* Media and Metadata Half */}
-      <MediaHalf $isInteractive={false}>
-        
-        {game.engine && game.engine.length > 0 && (
-          <EngineTitle>Made using: {game.engine.join(" / ")}</EngineTitle>
+          
         )}
 
-        {game.media && game.media.length > 0 && (
-          <GameMedia media={game.media} />
-        )}
-        
         {/* Pass $isWriteup to MetaContainer */}
-        <MetaContainer $isWriteup={isWriteup}>
+        <MetaContainer $isWriteup={isWriteup} style={{ marginTop: '20px' }}>
           {game.genres && (
             <MetaLine><strong>Genres:</strong> {game.genres.join(", ")}</MetaLine>
           )}
@@ -237,6 +228,18 @@ const Game: React.FC<GameProps> = ({ game }) => {
             </MetaLine>
           )}
         </MetaContainer>
+      </Half>
+
+      {/* Media and Metadata Half */}
+      <MediaHalf $isInteractive={false}>
+        
+        {game.engine && game.engine.length > 0 && (
+          <EngineTitle>Made using: {game.engine.join(" / ")}</EngineTitle>
+        )}
+
+        {game.media && game.media.length > 0 && (
+          <GameMedia media={game.media} />
+        )}
 
         {game.articleUrl && (
           <ReadArticleButton to={game.articleUrl}>

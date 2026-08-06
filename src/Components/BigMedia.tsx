@@ -7,6 +7,7 @@ const MediaWrapper = styled(Row)`
 justify-content: center;
   width: 100%;
   height: 100%;
+  min-width: 0;
   cursor: pointer;
 `;
 
