@@ -59,4 +59,5 @@ export interface Game {
   techniques?: string[];
   engine?: GameEngine[];
   articleUrl?: string; // Path to internal articles/essays
+  playUrl?: string; 
 }

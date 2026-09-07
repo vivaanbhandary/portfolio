@@ -46,9 +46,6 @@ const EngineTitle = styled.h4`
   font-weight: bold; /* Added bold */
   text-align: center; /* Centered */
   letter-spacing: 1px;
-
-  word-break: break-word;
-  overflow-wrap: anywhere;
 `;
 
 const MediaHalf = styled(Half)`
@@ -169,6 +166,34 @@ const ReadArticleButton = styled(Link)`
   }
 `;
 
+const PlayGameButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 25px; 
+  width: fit-content; 
+  align-self: center;
+  background-color: #00ced1;
+  color: #121212;
+  font-weight: bold;
+  font-family: 'Oxanium', sans-serif;
+  text-decoration: none;
+  border-radius: 8px; 
+  margin-top: 10px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  
+  &:hover, &:focus, &:active {
+    background-color: #00a8a8;
+    color: #121212;
+    transform: translateY(-2px);
+  }
+  
+  &::selection, & *::selection {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #121212;
+  }
+`;
+
 const Game: React.FC<GameProps> = ({ game }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -245,6 +270,12 @@ const Game: React.FC<GameProps> = ({ game }) => {
           <ReadArticleButton to={game.articleUrl}>
             Read Full Essay
           </ReadArticleButton>
+        )}
+
+        {game.playUrl && (
+          <PlayGameButton href={game.playUrl} target="_blank" rel="noopener noreferrer">
+            Play Game
+          </PlayGameButton>
         )}
         
         {game.links && game.links.length > 0 && (

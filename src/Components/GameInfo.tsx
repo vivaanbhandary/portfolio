@@ -9,6 +9,9 @@ interface GameInfoProps {
 
 const GameInfoContainer = styled(Column)`
   gap: 12px;
+
+  width: 100%;
+  min-width: 0;
 `;
 
 const GameTitle = styled.h1`

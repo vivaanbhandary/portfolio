@@ -67,9 +67,7 @@ export const games: Game[] = [
     genres: ["Platformer"],
     techniques: ["Level Design", "Parallax Scrolling", "Coyote Frames", "Player State Machine", "Composition Focused Architecture"],
     engine: [GameEngine.Godot],
-    links: [
-      { source: LinkImageSource.Itch, url: "https://snazaccino.itch.io/a-completely-ordinary-walk-home" }
-    ],
+    playUrl: "https://snazaccino.itch.io/a-completely-ordinary-walk-home",
     media: [{ source: "https://youtu.be/3WiZiLgCb98", type: MediaType.YouTube },
       { source: "/images/games/Ordinary_Walk/day0.png", type: MediaType.Image },
       { source: "/images/games/Ordinary_Walk/day4.png", type: MediaType.Image },

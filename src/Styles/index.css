@@ -89,9 +89,3 @@ input, select, textarea {
   border-radius: 10px;
   background: rgba(163, 155, 155, 0.8); 
 }
-
-@media (max-width: 768px) {
-  body {
-    font-size: 15px; /* Exactly half of the desktop 30px size */
-  }
-}

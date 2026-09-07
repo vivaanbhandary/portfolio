@@ -44,7 +44,7 @@ const NavbarLink = styled(Link)`
   }
 
   @media (max-width: 768px) {
-    font-size: 2rem; /* Restores the original mobile size */
+    font-size: 1rem;
     margin-bottom: 0;
   }
   `;

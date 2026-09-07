@@ -8,6 +8,9 @@ import { Column, Row } from "../Styles/StyledComponents";
 export const GameMediaContainer = styled(Column)`
   align-items: end;
 
+  width: 100%;
+  min-width: 0;
+
   @media (max-width: 768px) {
     align-items: center;
   }
@@ -18,6 +21,9 @@ export const LargeMediaWrapper = styled(Row) <{ $isFading: boolean }>`
   aspect-ratio: 16 / 9; 
   height: auto;
   justify-content: center;
+
+  min-width: 0;
+  
   opacity: ${({ $isFading }) => ($isFading ? 0 : 1)};
   transition: opacity 0.3s ease-in-out;
 `;

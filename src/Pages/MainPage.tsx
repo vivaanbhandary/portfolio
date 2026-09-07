@@ -6,9 +6,13 @@ import { games } from "../data";
 const TimelineContainer = styled.div`
   position: relative;
   max-width: 1600px;
+
+  width: 100%;
+  min-width: 0;
+  
   margin: 0 auto;
   padding: 40px 0;
-
+  
   /* The vertical timeline line */
   &::after {
     content: '';
